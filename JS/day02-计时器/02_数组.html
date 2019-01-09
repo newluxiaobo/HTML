@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <!-- Array 也是ECMAScript(欧洲计算机制造商协会,European Computer Manufacturers Association,通过ECMA-262标准化的脚本程序设计语言)  常用的数据类型 -->
+    <script>
+    // 1.new 的方式创建Array
+    var a_array = new Array();   //new 可省略  //创建一个空的数组
+    //添加元素
+    a_array[0] = 1
+    a_array[1] = 2
+    console.log(a_array, typeof a_array, typeof Array)
+
+    // 通过方法添加元素
+    a_array.push(3)
+    a_array.push(4)
+    console.log(a_array)
+
+    //删除元素
+    a_array.pop()
+    console.log(a_array)
+    a_array.pop()
+    console.log(a_array)
+    a_array.pop()
+    console.log(a_array)
+
+    // 栈
+    // 先进后出  push + pop 来实现
+
+    // 队列思想     
+    // 先进先出 
+    a_array.unshift(9);
+    console.log(a_array)
+
+    a_array.shift();
+    console.log(a_array)
+
+
+    //pop() 删除最后一个
+    function clearAllItems(data){
+        if (!data || data.length == 0){
+            // 防止传入值 null 或者 []
+            return false
+        }
+        for(var i = 0; i < data.length; i++){
+            data.pop()
+        }
+        return true
+    }
+
+    // 数组排序
+    var b_array = [1,4,6,8,2,3,9]
+    // 从小到大 升序
+    console.log(b_array.sort())
+    console.log(b_array)
+
+    b_array = ["a","c","d","hello","world",100]
+    console.log(b_array.reverse())
+
+    //console.log("hello world!!".reverse())   //不支持字符串
+    // 使用数组 从大到小
+    // sort()  + reverse()
+    console.log(["1","a",1,4,5].sort().reverse())
+    
+    // 把字符串拼接成一个数组
+    var str_array = b_array.concat("hello","js")  //赋值
+    console.log(b_array)  //原数组不改变
+    console.log(str_array)
+
+    // splice()
+    // 1.删除,  截取
+    // splice(截取元素的下标,截取元素的个数)  splice(下标)
+    var c_array = [1,2,3,4]
+    var d_array = c_array.splice(1,2)  // 1表示下标, 2表示个数
+
+    console.log(c_array)   // 截取的
+
+    console.log(d_array)   // 截取之后
+
+    // 2.插入功能
+    var e_array = [1,2,3,4,5]
+    console.log(e_array)
+    e_array.splice(1,2,"hello","world")  //(1表示插入位置的下标,0表示不删除)
+    console.log(e_array)
+
+    // 3.替换
+    // splice(替换元素的下标,表示替换的个数/长度,替换的内容)
+    e_array.splice(1,1,"js")
+    console.log(e_array)
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>移除子节点要注意的问题</title>
+</head>
+<body>
+    <script>
+        var a_data = [1,2,3,4,5,6,7,8,9,10]
+        var b_data = a_data
+        console.log(a_data)         // 引用
+        // b_data.pop()
+        // console.log(a_data)
+        for(var i=0;i<a_data.length;i++){
+            a_data.splice(i,a_data.length)
+        }
+        console.log(a_data)
+    </script>
+</body>
+</html>

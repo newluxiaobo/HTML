@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>轮播</title>
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+    <!-- 
+        1.无限轮播/无限滚动/无限滑动
+        2.页码跳转
+        3.定时滑动/定时滚动
+     -->
+     <!-- 1.1 实现页面结构内容 -->
+    <div>
+        <div id="scroll">
+            <img src="img/1.jpg" alt="">
+            <img src="img/2.jpg" alt="">
+            <img src="img/3.jpg" alt="">
+            <img src="img/4.jpg" alt="">
+            <img src="img/1.jpg" alt="">
+        </div>
+    </div>
+</body>
+</html>
+<script>
+    // 1.2 初始化 轮播图的位置
+    var scroll = document.querySelector("#scroll")
+    // 获取轮播图的宽度
+    var s_w = scroll.clientWidth
+    // 1.3 通过宽度来设置img 的位置--从左往右排列  (使用父相子绝)
+    var imgs = scroll.querySelectorAll("img")
+    for(var i=0;i<imgs.length;i++){
+        imgs[i].style.left = i*s_w + "px"
+    }
+
+    // 2. 图片实现滑动的功能 (使用定时器实现滑动)
+    function moveLeft(){
+        page++
+        if (page>imgs.length-1){
+            page = imgs.length-1
+        }
+        move()
+    }
+
+    function move(){
+        for(i=0; i<imgs.length;i++){
+            imgs[i].style.left = (i-page)*s_w + "px"
+        }
+        // 判断是不是最后一张img
+
+        setTimeout(function(){
+            if (page == imgs.length-1){
+            page = 0
+
+            // 再将所有图片拉回原来的位置时, 每个 img 都自带了动画,
+            // 所以要先将动画取消
+            for (var j=0;j<imgs.length;j++){
+                imgs[j].style.transition = "none"
+            }
+            
+            // 动画取消之后 要立刻将图片的位置进行还原
+            // 目的是消除 图片切换的时候,有视觉差
+            for (var j=0;j<imgs.length;j++){
+                imgs[j].style.left = (j-page)*s_w + "px"
+                // imgs[j].style.transition = "none"
+            }
+            
+            setTimeout(function(){
+                for (var j=0;j<imgs.length;j++){
+                    imgs[j].style.transition = "left 0.7s ease-in-out"
+                }
+            },10)
+            }
+        },700)
+    }
+
+    var page = 0
+    // 3. 声明一个全局变量用来记录当前的页面
+    setInterval(moveLeft,2000)
+
+</script>

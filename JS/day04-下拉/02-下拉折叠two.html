@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>下拉折叠two</title>
+</head>
+<body>
+    <!-- 
+
+     -->
+     <style>
+        html, body, ul, li {
+             margin: 0;
+             padding: 0;
+        }
+        ul{
+             list-style: none;
+        }
+        .menus{
+            padding-left: 20px;
+            padding-top: 20px;
+        }
+        .menus > ul > li > ul {
+            display: none;
+            width: 100px;
+            background-color:royalblue;
+        }
+        .active {
+            width: 100px;
+            background-color: rosybrown;
+            color: aliceblue;
+            transition: 1s;
+        }
+        .menus > ul > li > ul > li > ul{
+            display: none;
+            margin-left: 30px;
+            width: 70px;
+            background-color:aquamarine;
+        }
+     </style>
+    <div class="menus">
+        <ul>
+            <li>
+                河南省
+                <ul>
+                    <li>
+                        郑州市
+                        <ul>
+                            <li>金水区</li>
+                            <li>中原区</li>
+                        </ul>
+                    </li>
+                    <li>
+                        新乡市
+                        <ul>
+                            <li>新区</li>
+                            <li>乡区</li>
+                        </ul>
+                    </li>
+                    <li>开封市</li>
+                </ul>
+            </li>
+            <li>
+                河北省
+                <ul>
+                    <li>
+                        石家庄
+                        <ul>
+                            <li>石家区</li>
+                        </ul>
+                    </li>
+                    <li>
+                        邯郸
+                        <ul>
+                            <li>邯郸区</li>
+                        </ul>
+                    </li>
+                    <li>
+                        唐山
+                        <ul>
+                            <li>唐山区</li>
+                        </ul>
+                    </li>
+                    <li>
+                        保定
+                        <ul>
+                            <li>保定区</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</body>
+<script>
+    // 省
+    var li_el = document.querySelectorAll(".menus>ul>li")
+    // 市
+    var ul_el = document.querySelectorAll(".menus>ul>li>ul")
+    // console.log(ul_el)
+    for(var i=0;i<li_el.length;i++){
+        var item = li_el[i]
+        // 自定义属性
+        item.index = i
+        item.onclick = function (event){
+            //遍历所有的省
+            /*
+            for(var j=0;j<li_el.length;j++){
+                li_el[j].className = ""
+                ul_el[j].style.display = "none"
+            }
+            this.className = "active"
+            ul_el[this.index].style.display = "block"
+            */
+            var flag = this.querySelector("ul").style.display
+            // console.log(this.querySelector("ul").style.display)
+            // console.log(flag)
+            if(flag == "none" || flag == ""){
+                flag = "block"
+            }
+            this.querySelector("ul").style.display = flag
+        }
+    }
+
+    // 城市
+    var city = document.querySelectorAll(".menus>ul>li>ul>li")
+    console.log(city)
+    // 区
+    var cit = document.querySelectorAll(".menus>ul>li>ul>li>ul")
+    // console.log(cit)
+    for(var i=0;i<city.length;i++){
+        var item = city[i]
+        item.index = i
+        item.onclick = function (){
+            if(city[this.index] == cit[this.index]){
+                cit[this.index].style.display = "block"
+            }
+        }
+    }
+
+
+
+
+
+</script>
+</html>

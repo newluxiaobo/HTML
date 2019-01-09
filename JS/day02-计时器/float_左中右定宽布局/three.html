@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>three</title>
+    <style>
+        html,body{
+            height: 100%;
+            background-color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+        .top{
+            height: 15%;
+            background-color: red;
+        }
+        .body{
+            height: 70%;
+            background-color:yellow;
+        }
+        .foot{
+            height: 15%;
+            background-color: blue;
+            
+        }
+        .body > .body-left{
+            height: 100%;
+            background-color: hotpink;
+            width: 150px;
+            float: left;
+        }
+        .body > .body-right{
+            height: 100%;
+            background-color: darkorange;
+            width: 150px;
+            float: right;
+        }
+        .body > .body-middle{
+            height: 100%;
+            background-color: greenyellow;
+            margin-left:150px;
+            margin-right:150px;  
+        }
+    </style>
+</head>
+<body>
+    <div class="top">top</div>
+    <div class="body">
+        <div class="body-left">left</div>
+        <div class="body-right">right</div>
+        <div class="body-middle">middle</div>
+    </div>
+    <div class="foot">foot</div>
+</body>
+</html>

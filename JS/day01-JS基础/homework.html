@@ -1,0 +1,212 @@
+ <!-- 
+    1.怎么让一个不定宽的div,垂直水平居中
+    2.position 属性以及作用
+    3.浮动与清除浮动
+    4.什么是BFC?哪些元素会生出BFC?
+    5.box-sizing是什么? 在什么场景使用?
+    6.px/em/rem的区别
+    7.CSS的引入方式有哪些?link和@import区别?
+    8.流式布局和响应式布局的区别
+    9.渐进增强和优雅降级
+    10.CSS隐藏元素的几种方式以及区别
+    11.判断一个年份是否是闰年,并输出2000年到3000年之间的闰年(要求:)
+    function find_years(){//输出所有闰年 返回一个数组}
+    function check_years(){//是否是闰年,返回 boolean}
+ -->
+ <!DOCTYPE html>
+ <html>
+ <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>homework</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+ </head>
+ <body>
+    <style>
+        html,body{
+            height: 100%;
+            width: 100%;
+        }    
+        p{
+            color: red; 
+        }
+        
+    </style>
+
+
+    <p>1.怎么让一个不定宽的div,垂直水平居中</p>
+    <div>position: relative;position: absolute;top:50%;transform: translateY(-50%);</div>
+    <div class="wrapper" style="height: 100px;background-color:yellowgreen;position: relative;">
+        <div class="no-width" style="background-color: rgba(155, 148, 53, 0.788);position: absolute;top:50%;transform: translateY(-50%);">
+            垂直水平居中
+        </div>
+    </div>
+
+
+    <p>2.position 属性以及作用</p>
+    <div>
+        <ul>
+            <li>指定一个元素(静态的,相对的,绝对或固定)的定位方法的类型</li>
+            <li>属性值:(父相子绝)</li>
+            <li>absolute 生成绝对定位的元素,相对于static定位以外的第一个父元素进行定位</li>
+            <li>relative 生成相对定位的元素,相对于其正常位置进行定位,因此"left:20"会向元素的left位置添加20像素</li>
+            <li>fixed 生成固定定位的元素,相对于浏览器窗口进行定位</li>
+        </ul>
+    </div>
+
+
+    <p>3.浮动与清除浮动</p>
+    <div>浮动:使元素脱离文档流,按照指定的方向(左或右发生移动),直到它的外边缘碰到包含框或另一个浮动框的边框为止。(文档流是文档中可显示对象在排列时占用的位置/空间,而脱离文档流就是在页面中不占位置)
+        <ul>
+            <li>浮动之后,块级元素可以横排显示</li>
+            <li>行内元素可以设置宽高</li>
+            <li>元素没有设置宽高时,内容撑开宽</li>
+            <li>支持margin</li>
+            <li>脱离文档流</li>
+            <li>提升半层级</li>
+            <li>不支持margin:auto</li>
+        </ul>
+        <p>清除浮动:(浮动之后我们会发现子元素浮动会造成父级盒子高度坍塌，这样如果下面在进行继续布局的话会使页面布局错乱)</p>
+        <ul>
+            <li>1.给"下级"兄弟标签clear：both属性,缺点：只是让后面的元素正常显示，并没有撑开"上级"兄弟的高度</li>
+            <li>2.父级给高度,可以正常显示,缺点：一般都是元素内容撑开高度，拓展性不好。</li>
+            <li>3.父级元素 display:inline-block;可以正常显示,缺点：父级盒子margin:auto;失效，会发现上部分和下面中间有间隙。</li>
+            <li>4.父级overflow:hidden;可以正常显示,缺点：需要配合宽度</li>
+            <li>5.加给浮动元素末尾的后面再添加一个元素。加上一个clear属性可以正常显示,缺点：随意的添加一个空元素，不符合代码规范</li>
+            <li>6.after伪元素清除浮动,添加给浮动元素，依旧可以正常显示(clearfix:after{content:””; display:block; clear:both;})</li>
+        </ul>
+    </div>
+
+
+    <p>4.什么是BFC?哪些元素会生出BFC?</p>
+    <div>
+        在一个Web页面的CSS渲染中，块级格式化上下文 (Block Fromatting Context)是按照块级盒子布局的。W3C对BFC的定义如下：浮动元素和绝对定位元素，非块级盒子的块级容器（例如 inline-blocks, table-cells, 和 table-captions），以及overflow值不为“visiable”的块级盒子，都会为他们的内容创建新的BFC（块级格式上下文）
+    </div>
+    <div>形成BFC的条件:</div>
+    <div>
+        <ul>
+            <li>1.浮动元素，float 除 none 以外的值；</li>
+            <li>2.绝对定位元素，position（absolute，fixed）；</li>
+            <li>3.display 为以下其中之一的值 inline-blocks，table-cells，table-captions；</li>
+            <li>4.overflow 除了 visible 以外的值（hidden，auto，scroll）</li>
+        </ul>
+    </div>
+
+
+    <P>5.box-sizing是什么? 在什么场景使用?</P>
+    <div>box-sizing 属性 允许以特定的方式定义匹配某个区域的特定元素</div>
+    <div>box-sizing属性可以为三个值之一：content-box（default），border-box，padding-box。
+        <ul>
+            <li> content-box，border和padding不计算入width之内</li>
+            <li>padding-box，padding计算入width内</li>
+            <li>border-box，border和padding计算入width之内</li>
+        </ul>
+        <div>一般在写页面的时候用这个属性就不会再考虑边框和内边距会改变整体所占宽度，即不用再根据盒子模型再去计算，省去很多麻烦</div>
+    </div>
+
+
+    <p>6.px/em/rem的区别</p>
+    <ul>
+        <li>任意浏览器的默认字体高都是16px。所有未经调整的浏览器都符合: 1em=16px。那么12px=0.75em,10px=0.625em。</li>
+        <li>px像素（Pixel）。相对长度单位。像素px是相对于显示器屏幕分辨率而言的</li>
+        <li>em是相对长度单位。相对于当前对象内文本的字体尺寸。如当前对行内文本的字体尺寸未被人为设置，则相对于浏览器的默认字体尺寸。</li>
+        <li> rem是CSS3新增的一个相对单位（root em，根em）,使用rem为元素设定字体大小时，仍然是相对大小，但相对的只是HTML根元素</li>
+    </ul>
+
+
+    <p>7.CSS的引入方式有哪些?link和@import区别?</p>
+    <div>1.内联方式</div>
+    <div>2.嵌入方式</div>
+    <div>3.连接方式</div>
+    <div>4.导入方式</div>
+    <div>两者都是外部引用CSS的方式，但是存在一定的区别：</div>
+    <div>区别1：link是XHTML标签，除了加载CSS外，还可以定义RSS等其他事务；@import属于CSS范畴，只能加载CSS。</div>
+    <div>区别2：link引用CSS时，在页面载入时同时加载；@import需要页面网页完全载入以后加载。</div>
+    <div>区别3：link是XHTML标签，无兼容问题；@import是在CSS2.1提出的，低版本的浏览器不支持。</div>
+    <div>区别4：ink支持使用Javascript控制DOM去改变样式；而@import不支持。</div></div>
+
+
+    <p>8.流式布局和响应式布局的区别</p>
+    <div>流式布局（Liquid）的特点（也叫"Fluid") 是页面元素的宽度按照屏幕分辨率进行适配调整，但整体布局不变。代表作栅栏系统（网格系统）。</div>
+    <div>随着CSS3出现了媒体查询技术，又出现了响应式设计的概念。响应式设计的目标是确保一个页面在所有终端上（各种尺寸的PC、手机、手表、冰箱的Web浏览器等等）都能显示出令人满意的效果，对CSS编写者而言，在实现上不拘泥于具体手法，但通常是糅合了流式布局+弹性布局，再搭配媒体查询技术使用。——分别为不同的屏幕分辨率定义布局，同时，在每个布局中，应用流式布局的理念，即页面元素宽度随着窗口调整而自动适配。</div>
+    <div>可以把响应式布局看作是流式布局和自适应布局设计理念的融合</div>
+
+
+    <p>9.渐进增强和优雅降级</p>
+    <div>渐进增强:针对低版本浏览器进行构建页面，保证最基本的功能，然后再针对高级浏览器进行效果、交互等改进和追加功能达到更好的用户体验</div>
+    <div>优雅降级:一开始就构建完整的功能，然后再针对低版本浏览器进行兼容</div>
+
+
+    <p>10.CSS隐藏元素的几种方式以及区别</p>
+    <div>
+        <ul>
+            <li>display:none(不会再占用页面空间，其占用的空间会被其他元素所占有，从而会引起浏览器的重排和重汇)</li>
+            <li>visibility: hidden(虽然能够隐藏元素，但是该元素仍会占用页面空间，因此只会导致浏览器的重汇而不会引起重排.如果希望元素隐藏后不会引起页面布局的变化，则推荐使用visibility:hidden;方式)</li>
+            <li>opacity:0()点击可以触发click函数,有动画效果</li>
+            <li>透明度为0, 宽高为0</li>
+        </ul>
+    </div>
+
+    
+    <p>11.判断一个年份是否是闰年,并输出2000年到3000年之间的闰年
+        function find_years(){//输出所有闰年 返回一个数组}
+        function check_years(){//是否是闰年,返回 boolean}</p>
+    <input type="text" placeholder="请输入年份">
+    <textarea rows="26" cols="100" readonly style="resize: none;border: none;outline: none">
+        function check_years(year) {
+            if (year < 0) {
+                return false;
+            }
+            var condition_1 = year % 4 == 0;
+            var condition_2 = year % 100 != 0;
+            var condition_3 = year % 400 == 0;
+            return condition_1 && condition_2 || condition_3
+        }
+        function find_years(begin_year,end_year) {
+            var all_years = []
+            for (var year = 2000; year <= 3000; year++) {
+                var res = check_years(year);
+                if(res){
+                    all_years.push(year)
+                }
+            }
+            return all_years
+        }
+        console.log(check_years(2016));
+        console.log(find_years());
+    </textarea>
+    
+    <script>
+        var a = 9/4  //整除(带小数)
+        var b = 9%4  //求模  取余
+        
+        console.log(Math.round(6/1))
+        
+        function check_years(year) {
+            if (year < 0) {
+                return false;
+            }
+            var condition_1 = year % 4 == 0;
+            var condition_2 = year % 100 != 0;
+            var condition_3 = year % 400 == 0;
+            return condition_1 && condition_2 || condition_3
+        }
+        
+        function find_years(begin_year,end_year) {
+            var all_years = []
+            for (var year = 2000; year <= 3000; year++) {
+                var res = check_years(year);
+                if(res){
+                    all_years.push(year)
+                }
+            }
+            return all_years
+        }
+        console.log(check_years(2016));
+        console.log(find_years());
+    </script>
+
+
+<p>-----------------------------------------------------------------</p>
+ </body>
+ </html>

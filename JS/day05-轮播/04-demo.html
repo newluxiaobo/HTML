@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/demo.css">
+</head>
+<body>
+    <div class="view-box">
+        <img src="img/4.jpg" alt="">
+        <img src="img/1.jpg" alt="">
+        <img src="img/2.jpg" alt="">
+        <img src="img/3.jpg" alt="">
+        <img src="img/4.jpg" alt="">
+        <img src="img/1.jpg" alt="">
+        <div>《</div>
+        <div>》</div>
+    </div>
+</body>
+</html>
+<script>
+    var view_box = document.querySelector(".view-box")
+    var view_width = view_box.clientWidth
+    var imgs = view_box.querySelectorAll("img")
+    for(var index=0;index<imgs.length;index++){
+        imgs[index].style.left = index*view_width + "px"
+    }
+
+
+    function moveLeft(){
+        page++
+        if(page>imgs.length-1){
+            page = imgs.length-1
+        }
+        move()
+    }
+    function move(){
+        for (var index=0;index<imgs.length;index++){
+            imgs[index].style.left = (index - page)*view_width + "px"
+        }
+    }
+    var page = 0
+    setInterval(moveLeft,2000)
+</script>

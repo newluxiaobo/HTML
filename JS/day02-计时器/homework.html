@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>倒计时</title>
+</head>
+<body style="color:saddlebrown;font-size: 100px;text-align: center;vertical-align: middle;">
+    
+</body>
+<script>
+    function getDownTime(dt){
+            // 1.计算时间差
+            // 获取时间的毫秒数
+            var iMsec = dt-Date.now()
+            if (iMsec <= 0){
+                return
+            }
+            // iMsec 毫秒数
+            // 毫秒 --> 秒
+            var sec = iMsec / 1000
+            // 天
+            var day = parseInt(sec / 3600 / 24)
+            // 时
+            var hour = parseInt((sec - day*3600*24)/3600)
+            // 分
+            var min = parseInt((sec - day*3600*24 - hour*3600)/60)
+            // 秒
+            var seconds = parseInt(sec - day*3600*24 - hour*3600 - min*60)
+            
+            var time = day + "天" + hour + "时" + min + "分" + seconds + "秒"
+            return time
+        }
+        
+
+    function countDown(){
+        document.body.innerHTML = ""
+        var time = new Date("2/1/2019")
+        document.body.innerHTML = getDownTime(time)
+    }
+
+
+
+    setInterval(countDown,1000)
+
+</script>
+</html>
