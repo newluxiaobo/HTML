@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Demo</title>
+</head>
+    <style>
+        html,body{
+            margin-left: 30px;
+        }
+        ul,li{
+            padding: 0;
+            margin: 0;
+        }
+        #show{
+            text-indent: 6px;
+            border: 0;
+            outline: none;
+            background-color: rgba(0,0,0,0);
+            box-shadow: 0 1px 1px rgba(0,0,0,0.12), 1px 0 1px rgba(0,0,0,0.24);
+        }
+        #show,#ul > li{
+            height: 50px;
+            width: 120px;
+            line-height: 50px;
+            background-color: lightblue;
+            list-style: none;
+        }
+        #ul{
+            width: 120px;
+            display: none;
+            box-shadow: 1px 1px 1px rgba(0,0,0,0.12), 1px 1px 1px rgba(0,0,0,0.24);
+        }
+        #ul > li{
+            margin-top: 1px;
+            box-shadow: 0 0 3px rgba(0,0,0,0.12), 0 0 3px rgba(0,0,0,0.24);
+            
+        }
+        #ul > li:hover{
+            background-color: deepskyblue;
+        }
+        #help{
+            height: 300px;
+        }
+    </style>
+<body>
+    <input type="text" id="show" placeholder="输入文字">
+    <ul id="ul">
+        <li>栏目一>菜单一</li>
+        <li>栏目二>菜单二</li>
+        <li>栏目三>菜单三</li>
+        <li>栏目四>菜单四</li>
+    </ul>
+</body>
+</html>
+<script>
+    window.onload = function (){
+        // var div_el = document.querySelector("#show")
+        // var ul_el = document.querySelector("#ul")
+        // div_el.onmouseover = function (){
+        //     ul_el.style.display = "block";
+        // }
+        var inwords = document.querySelector("#show")
+        var ul = document.querySelector("#ul");
+        var li = ul.querySelectorAll("li")
+
+       inwords.addEventListener("mouseover",function(){
+            ul.style.display = "block";
+        },false)
+
+        inwords.addEventListener("mouseout",function(){
+            ul.style.display = "none";
+        },false)
+
+        ul.addEventListener("mouseover",function(){
+            ul.style.display = "block";
+        },false)
+
+        ul.addEventListener("mouseout",function(){
+            ul.style.display = "none";
+        },false)
+        
+        ul.addEventListener("click",function(ev){
+            inwords.value = ev.target.textContent
+            ul.style.display = "none";
+        },false)
+    }
+</script>
