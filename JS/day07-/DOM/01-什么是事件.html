@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>什么是事件</title>
+</head>
+<body>
+    <!-- 
+        1.事件
+        HTML 的事件: 是用户在浏览器之间产生行为,这个行为称之为事件
+        比如: 鼠标单击,双击,滑动,滚动
+        
+        2. JS 事件 有三种模型
+            1) 内联模型
+            2) 脚本模型
+            3) DOM2模型
+        
+          内联模型
+    -->
+    <div onclick="alert('嘤嘤嘤')">点我!!</div>
+    <div onclick="func()">指定函数</div>
+    <div onclick="func2(this)">指定函数指定参数</div>
+    <div onclick="func3(window.event)">指定函数获取事件</div>
+    <script>
+        function func(){
+            alert("嘿嘿")
+        }
+        function func2(that){
+            that.style.backgroundColor = "blue"
+            that.style.color = "white"
+        }
+
+        function func3(ev){
+            console.log(ev.target.textContent)
+        }
+    </script>
+
+    <div id="show"></div>
+    <img src="" alt="">
+    <script>
+        var show = document.querySelector("#show")
+        show.style.height = "10px"
+        show.style.backgroundColor = "red"
+    </script>
+</body>
+<script>
+    // onload  延迟加载/懒加载
+    // onload 是一个事件, 是当文档以及内容(包括引入js/css)加载完成之后才会触发该事件
+    // 一个文档有且只有一个onload事件,如果还有其他,则只会执行最后的onload事件
+    window.onload = function(){
+        console.log("window onload")
+    }
+</script>
+</html>
