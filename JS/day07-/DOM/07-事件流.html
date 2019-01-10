@@ -11,27 +11,71 @@
     <!-- 
         事件流 
         : 是用来描述从页面接收事件的顺序,当几个都具备有事件的元素叠加在一起的时候,
-            这种叠加 不是节点的叠加,他们之间的关系是平级的,这种关系不受图层的影响 
+            这种叠加 不是节点的叠加,他们之间的关系是平级的,这种关系不受图层的影响(定位)
+            如果是节点之间的事件都会被触发,如果不是节点 则会只触发最上层的事件
+
+            事件流 包含两种模式  1.捕捉   2.冒泡
 
 
      -->
     <div id="show"></div>
+     <ul id="menus">
+         <li>001</li>
+         <li>002</li>
+         <li>003</li>
+         <li>004</li>
+     </ul>
+     <script>
+         var uls = document.querySelector("#menus")
+         uls.onclick = function (){
+             console.log("ul click");
+             
+         }
+         var lis = uls.querySelectorAll("li")
+         for (var i=0;i<lis.length;i++){
+             var item = lis[i]
+             item.onclick = function (ev){
+                 console.log(this.innerText);
+                 // 阻止冒泡  stopPropagation
+                //  ev.stopPropagation()
+                stopPro(ev)
+             }
+         }
+
+        // 冒泡兼容
+        function stopPro(ev){
+            var e = ev || window.event;
+            (typeof e.stopPropagation != "function")?e.cancleBubble = true : e.stopPropagation;
+        }
+
+     </script>
+
+
+
+     <a id="baidu" href="https://www.baidu.com" >百度一下</a>
+
+     <script>
+         var baidu = document.querySelector("#baidu")
+         baidu.onclick = function (ev){
+            console.log("测试走不走!!!");
+            // return false;
+            // preventDefault()  去除元素标签自带的事件
+            ev.preventDefault();
+         }
+     </script>
+
+
 </body>
 
+
+
     <script>
-        // document.body.onclick = function (){
-        //     console.log("body");
-            
-        // }
-        
-        // window.onclick = function (){
-        //     console.log("window");
-            
-        // }
-
-
-
-
+        document.body.onclick = function (){
+            console.log("body");
+        }
+        window.onclick = function (){
+            console.log("window");
+        }
         var div_el = document.querySelector("#show")
         div_el.onclick = function (){
             console.log("div click");
@@ -52,11 +96,6 @@
             
             }
         }
-        
-        
-        console.log(document.URL);
-        
-        
-    
+            
     </script>
 </html>

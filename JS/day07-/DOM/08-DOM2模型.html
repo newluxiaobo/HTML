@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>事件DOM2模型</title>
+</head>
+<body>
+    <!-- 事件DOM2模型
+        W3C 事件 处理函数, 提供了两个方法, 用于添加事件和删除事件
+    -->
+    <div id="show">点击切换颜色</div>
+
+    <script>
+        document.body.addEventListener("click", function (ev){
+            ev.stopPropagation()
+            // var target = ev.target
+            // if(target.tarName.toLocaleLowerCase == "div"{
+            //     if(target.id == "show"){
+                    
+            //     }
+            // }
+            console.log("body");
+            
+            document.querySelector("#show").addEventListener("click", show,false)
+        },false)
+        function show(){
+            console.log("show");
+            this.removeEventListener("click",show,false)
+        }
+        
+        function toRed(){
+            
+        }
+        function toBlue(){
+
+        }
+
+
+    </script>
+
+
+
+
+
+
+
+
+    <script>
+        // document.body.addEventListener 
+        // window.addEventListener("load",function (){
+        //     alert("监听load事件,收到此消息!证明load完毕")
+        // },false)
+        //console.log("before");
+        window.addEventListener("load", function(){
+            console.log("load end");
+            
+        },false)
+        //console.log("after");
+        
+    </script>
+
+    <div id="sum">求和</div>
+    <script>
+        var sum_ls = document.querySelector("#sum")
+        sum_ls.onclick = function (){
+            // sum(1,2)
+            setTimeout(sum,3000)
+        }
+        function sum(a,b){
+            var a=b=1
+            sum_ls.innerText = a+b
+        }
+    </script>
+
+    <ul id="menus">
+        <!-- <li>001</li>
+        <li>002</li>
+        <li>003</li>
+        <li>004</li>
+        <li>005</li>
+        <li>006</li>
+        <li>007</li>
+        <li>008</li>
+        <li>009</li>
+        <li>010</li> -->
+    </ul>
+    <script>
+        var menus = document.querySelector("#menus")
+        menus.addEventListener("click", function(ev){
+            console.log(ev.target.innerText);
+            ev.stopPropagation()
+        },false)
+    
+        for (var i=0;i<10;i++){
+            var li = document.createElement("li")
+            li.innerText = "00"+i
+            li.onclick = function (ev){
+                ev.stopPropagation()
+                console.log(this.innerText);
+                
+            }
+            menus.appendChild(li)
+        }
+
+
+        window.onclick = function (ev){
+            console.log("window click");
+            
+        }
+
+    </script>
+
+</body>
+</html>
