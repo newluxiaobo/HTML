@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>事件流</title>
+    
+</head>
+<body>
+    <!-- 
+        事件流 
+        : 是用来描述从页面接收事件的顺序,当几个都具备有事件的元素叠加在一起的时候,
+            这种叠加 不是节点的叠加,他们之间的关系是平级的,这种关系不受图层的影响 
+
+
+     -->
+    <div id="show"></div>
+</body>
+
+    <script>
+        // document.body.onclick = function (){
+        //     console.log("body");
+            
+        // }
+        
+        // window.onclick = function (){
+        //     console.log("window");
+            
+        // }
+
+
+
+
+        var div_el = document.querySelector("#show")
+        div_el.onclick = function (){
+            console.log("div click");
+        }
+
+        for (var i=0;i<10;i++){
+            var btn = document.createElement("button")
+            btn.index = i
+            btn.style.position = "absolute"
+            btn.style.zIndex = i+1000
+            btn.style.left = i*10 + "px"
+            btn.style.top = "0"
+            btn.innerText = "第" + i + "个"
+            div_el.appendChild(btn)
+
+            btn.onclick = function (ev){
+                console.log(this.innerText);
+            
+            }
+        }
+        
+        
+        console.log(document.URL);
+        
+        
+    
+    </script>
+</html>
