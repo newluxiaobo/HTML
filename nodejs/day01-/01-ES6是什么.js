@@ -82,6 +82,7 @@ let a_string = "hello world"
 // indexOf 返回第一次出现指定字符串的下标  找不到返回-1
 let index = a_string.indexOf("world",7)  // 7 表示从第几个开始找
 console.log(index); // -1 表示没找到
+
 // 查找指定字符串中出现最多的字母并统计出现的次数
 // "abcaandccaaaaaaaa"   
 
