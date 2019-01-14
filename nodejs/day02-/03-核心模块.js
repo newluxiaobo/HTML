@@ -11,7 +11,7 @@
 
 
 // 如果相对文件进行操作,必须先引入文件模块
-const fs = require("fs")
+// const fs = require("fs")
 
 //open(path,flags,mode,callback)
 /**
@@ -26,6 +26,8 @@ const fs = require("fs")
  *      err: 错误信息
  *       fd: 表示打开后,操作文件的对象
  */
+
+ /*
 fs.open("./text.txt","r+",(err,fd)=>{
     if(err){
         throw "打开失败";
@@ -65,3 +67,50 @@ console.log("同步读,开始");
 let datas = fs_sync.readFileSync("./text1.txt")
 console.log(datas.toString());
 console.log("同步读结束");
+*/
+
+
+const fs = require("fs");
+/*
+let ss = "hello world!!!"
+let wdata = `这是即将写入的文件信息${ss}`
+
+fs.writeFile("./text.txt",wdata,(err)=>{
+    if(err){
+        err;
+    }
+})
+fs.appendFile("./text.txt","追加内容:1111111",(error)=>{
+    if(error){
+        console.log("追加文件失败"+error.message);
+        
+    }
+    console.log("追加成功");
+    
+})
+*/
+
+fs.open("text.txt", "a+", (err, fd) => {
+    if (err) {
+        console.log(err);
+
+    }
+
+    console.log("成功");
+
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+// 1. 作业1  能否封装一个关于文件操作的自定义模块
+
