@@ -28,8 +28,7 @@ const fs = require("fs")
  */
 fs.open("./text.txt","r+",(err,fd)=>{
     if(err){
-        console.log("err:"+err);
-        throw err;
+        throw "打开失败";
     }
     console.log("打开成功");
     
@@ -38,8 +37,31 @@ fs.open("./text.txt","r+",(err,fd)=>{
 //先读
 fs.readFile("./text.txt",(err,fd)=>{
     if(err){
-        throw err
+        throw err;
     }
     console.log(fd.toString());
 })
 
+
+
+// 写
+let ss = "hello world!!!"
+let wdata = `这是即将写入的文件信息${ss}`
+
+fs.writeFile("./text.txt",wdata,(err)=>{
+    if(err){
+        throw err;
+    }
+})
+
+console.log("finished>>>>>");
+
+// 同步
+const fs_sync = require("fs")
+
+fs_sync.openSyn("./text1.txt","r+")
+
+console.log("同步读,开始");
+let datas = fs_sync.readFileSync("./text1.txt")
+console.log(datas.toString());
+console.log("同步读结束");
