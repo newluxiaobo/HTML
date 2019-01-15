@@ -42,6 +42,7 @@ fs.stat("./input.txt",(err,stats)=>{
 //         throw err;
 //     }
 // })
+//删除目录
 // fs.rmdir("./myfloder/",(err)=>{
 //     if(err){
 //         throw err;
@@ -50,9 +51,10 @@ fs.stat("./input.txt",(err,stats)=>{
 
 
 // 读取一个文件夹
-fs.readdir(".../day02/",(err,files)=>{
+fs.readdir("../day02/",(err,files)=>{
     if(err){
-        throw err;
+        console.log("err");
+        
     }
     console.log(files);
     
@@ -61,7 +63,8 @@ fs.readdir(".../day02/",(err,files)=>{
 //删除文件
 fs.unlink("./homework/112/1.js",(err)=>{
     if(err){
-        throw err;
+        console.log("err");
+        
     }
 })
 
