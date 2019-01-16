@@ -1,13 +1,18 @@
 /**
+ * Express 是Nodejs中的一个Web框架
+ * 提供丰富的Web应用服务
+ * 
+ * 
  * 使用步骤:
- * 
- * 
+ * 1. 初始化nodejs项目
+ * npm init
  * 
  * 2. 安装Express 包/模块
  * cnpm install express --save
- * 或者 cnpm i express --s
+ * 或者 cnpm i express --save
  * 
- * 3.
+ * 3. 在项目的主入口 js文件中引入express模块
+ * const express = require("express")
  * 
  * 4.初始化 express 对象
  * const app = express()
