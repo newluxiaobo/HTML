@@ -60,7 +60,9 @@ app.post("/upload2",single2,(req,res)=>{
 /**方法1. */
 let st2 = Multer.diskStorage({
     destination:(req,file,cb)=>{
-        console.log(file);
+        // console.log(file);
+        // console.log(req.body);
+        
         cb(null,Path.join(__dirname,"sources/images"))
     },
     filename:(req,file,cb)=>{

@@ -8,9 +8,21 @@ const app = Express()
 app.use(Express.static(Path.join(__dirname,"public")))
 app.use(bodyParser.urlencoded({extended:false}))
 
-let uploadDir = Path.join(__dirname,"images/")
-let multer = Multer({dest:uploadDir})
+// let uploadDir = Path.join(__dirname,"images/")
 
+// let multer = Multer({dest:uploadDir})
+
+let st = Multer.diskStorage({
+    destination:(req,file,cb)=>{
+        // console.log(file);
+        console.log(req.body.uname);
+        cb(null,Path.join(__dirname,"sources/images"))
+    },
+    filename:(req,file,cb)=>{
+        cb(null,"1.jpg")
+    }
+})
+let multer = Multer({storage:st})
 let single = multer.single("logo")
 
 app.post("/upload",single,(req,res)=>{
