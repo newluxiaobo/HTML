@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="layui/css/layui.css">
+    <link rel="stylesheet" href="css/index.css">
+    <script src="layui/layui.js"></script>
+    <title>图片管理系统</title>
+</head>
+
+<body>
+    <div id="wrapper">
+        <h1>图片管理系统</h1>
+        <button id="login" class="layui-btn layui-btn-danger layui-btn-lg">登录</button>
+        <button id="register" class="layui-btn layui-btn-normal layui-btn-lg">注册</button>
+    </div>
+</body>
+<script>
+    window.onload = function (){
+        main()
+    }
+
+    // for(var i=0;i<10;i++){
+    //     var btn = document.createElement("button")
+    //     btn.innerText = "第" + i + "个"
+    //     (function (number){
+    //         btn.onclick = function (){
+    //             console.log(number);
+    //         }
+    //     })(i);
+    //     document.body.appendChild = btn
+    // }
+
+    function main(){
+        // 获取元素标签
+        var login = document.querySelector("#login")
+        var register = document.querySelector("#register")
+
+        //添加事件
+        //登录事件
+        login.onclick = function(){
+            // 页面的直接跳转
+            window.location.href = "login.html"
+        }
+        //注册事件
+        register.onclick = function(){
+            // 页面的直接跳转
+            window.location.href = "register.html"
+        }
+    }
+    
+</script>
+</html>

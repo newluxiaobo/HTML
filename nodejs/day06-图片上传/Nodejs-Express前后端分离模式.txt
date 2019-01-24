@@ -1,0 +1,56 @@
+前端: 用于显示页面效果和对应的数据,用来处理与用户交互过程中的UI(用户图形界面)响应
+
+
+后端:数据服务
+
+如何构建B/S 或者 C/S 开发模型
+
+S端:
+1.选取Web服务框架 nodejsExpress框架
+2.npm init 或者npm -y init 初始化 node 项目/网站
+3.安装所需要的第三方 模块/包
+
+cnpm i express body-parser multer --save 或者
+cnpm install express body-parser multer --save
+
+4.设计服务器的接口/API接口
+    4.1 "/" 根目录: 处理网站的首页(并非主页)
+    4.2 /login 用户登录处理接口
+
+    4.3 /register 用户注册
+    4.4 /showlist 展示列表(图片列表)
+    4.5 /add 增加一张(1张)
+    4.6 /delete 删除一张指定图片()
+    4.7 /edit 编辑一张图片的相关信息
+
+5.实现接口对应的功能
+POST login register add
+其他都是GET
+
+6.设计对应的相关HTML
+首页>>登录
+注册>>
+主页>>
+编辑>>
+
+7.设计前后端的数据的通信格式 JSON
+
+
+文档的格式
+
+1.用户登录
+功能描述:
+url:ip/login
+方法:POST
+请求参数:
+参数名称    参数类型    可选    参数描述
+uname       string      必选    手机号 用户名 11位
+upwd        string      必选    
+
+返回值说明:
+{
+    msg:"登录成功",
+    err:false
+}
+msg : 返回信息
+err : 是否有错误  true表示有错误  false没有错误

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- <link rel="stylesheet" href="./css/reset.css"> -->
+    <link rel="stylesheet" href="./css/login.css">
+    <title>登录</title>
+</head>
+
+<body>
+    <h1>登录</h1>
+    <form action="/login" method="post">
+        <input type="text" name="uid" placeholder="用户名">
+        <input type="password" name="upwd" placeholder="密码">
+        <input type="submit" value="登录">
+    </form>
+</body>
+
+</html>
+<script>
+    window.onload = function () {
+        var form = document.querySelector("form")
+        form.onsubmit = function () {
+            let uid = document.querySelector("form>input[name='uid']")
+            // 获取用户密码
+            let upwd = document.querySelector("form>input[name='upwd']")
+
+            // 判断用户名密码是否有效
+            if (uid.value.length == 0 || upwd.value.length == 0) {
+                uid.style.border = "1px solid red"
+                upwd.style.border = "1px solid red"
+                return false
+            }
+            let xhr = new XMLHttpRequest()
+            xhr.open("POST", "/login")
+            xhr.onreadystatechange = function () {
+                console.log(xhr.readyState);
+                if(xhr.readyState==4){
+                    let msg = JSON.parse(xhr.responseText)
+                    if (!msg["err"]) {
+                        alert(msg.msg)
+                        window.open("home.html");
+                    } else {
+                        alert(msg.msg)
+                    }
+                }
+            }
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
+            let data = "uid=" + uid.value + "&" + "upwd=" + upwd.value
+            xhr.send(data)
+            return false
+        }
+    }
+</script>

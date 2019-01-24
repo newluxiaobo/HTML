@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>轮播图完整版</title>
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+    <div id="scroll">
+        <img src="img/1.jpg" alt="">
+        <img src="img/2.jpg" alt="">
+        <img src="img/3.jpg" alt="">
+        <img src="img/4.jpg" alt="">
+        <img src="img/1.jpg" alt="">
+    </div>
+</body>
+</html>
+<script>
+    var scroll_el = document.querySelector("#scroll")
+    var s_w = scroll_el.clientWidth
+    var imgs = document.querySelectorAll("#scroll>img")
+    for (var index=0;index<imgs.length;index++){
+        imgs[index].style.left = index*s_w + "px"
+    }
+
+    var l_btn = document.createElement("div")
+    l_btn.innerText = "<"
+    l_btn.className = "arrow left"
+    scroll_el.appendChild(l_btn)
+    var r_btn = document.createElement("div")
+    r_btn.innerText = ">"
+    r_btn.className = "arrow right"
+    scroll_el.appendChild(r_btn)
+
+
+
+    l_btn.onclick = function(){
+        moveLeft()
+    }
+    r_btn.onclick = function(){
+        moveRight()
+    }
+
+
+    function moveLeft(){
+        page++
+        if(page == imgs.length-1){
+            page = imgs.length-1
+        }
+        move()
+    }
+
+    function moveRight(){
+        page--
+        if(page<1){
+            page = 0
+        }
+        move()
+    }
+    var page = 0
+
+    function move(){
+        for (var i=0;i<imgs.length;i++){
+            imgs[i].style.left = (i-page)*s_w + "px"
+        }
+        pages.setPage(page)
+        setTimeout(function(){
+            if(page==imgs.length-1){
+                page = 0
+                for(var j=0;j<imgs.length;j++){
+                    imgs[j].style.transition = "none"
+                }
+                
+                for(var j=0;j<imgs.length;j++){
+                    imgs[j].style.left = j*s_w + "px"
+                }
+                setTimeout(function(){
+                    for(var j=0;j<imgs.length;j++){
+                        imgs[j].style.transition = "left 1s ease-in-out"
+                    }
+                },100)
+            }
+        },1000)
+    }
+
+    var timer = setInterval(moveLeft,2000)
+
+    //*****************************
+    //实现页码
+    //1. 页码显示
+    for(var i=0;i<imgs.length-1;i++){
+        var p = document.createElement("div")
+        p.className = "pageControl"
+        scroll_el.appendChild(p)
+        p.style.top = "90%"
+        p.style.left =(s_w/2 +i*20)-((imgs.length-1)*10 + (imgs.length-1-1)*10)/2 + "px"
+        p.index = i
+
+        p.onclick = function (event){
+            // 改变page
+            page = event.target.index
+            // move
+            move()
+            clearInterval(timer)
+            timer = setInterval(moveLeft, 2000)
+        }
+    }
+
+    // 自定义setPage
+    var pages = document.querySelectorAll(".pageControl")
+    pages.setPage = function (page_index){
+        if(page_index == imgs.length-1){
+            page_index = 0
+        }
+        for(var i=0;i<this.length;i++){
+            this[i].style.backgroundColor = ""
+        }
+        this[page_index].style.backgroundColor = "#fff"
+    }
+
+    pages.setPage(0)
+
+
+
+</script>
